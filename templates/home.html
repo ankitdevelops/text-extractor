@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Document Extractor | Home{% endblock title %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <div class="card card-body my-3">
+        <div class="card-title">
+          Upload File
+        </div>
+        <form
+          action=""
+          method="POST"
+          enctype="multipart/form-data"
+          class="form-data"
+        >
+          {% csrf_token %} {{form |  crispy}}
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+    
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <div class="card card-body my-3">
+        <div class="card-title">
+          Your Uploaded Files
+        </div>
+        <ul class="list-group ">
+          {% for data in user_data %}
+          <li class="list-group-item d-flex justify-content-between"><span><a href="{% url 'details' data.id %}" >{{data}}</a></span> <span><a href="{{ data.file.url }}" download="true" >Download</a></span></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>  
+
+{% endblock content %}
