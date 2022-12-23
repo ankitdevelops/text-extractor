@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import Text
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url="account_login")
 def home(request):
     form = TextForm()
     if request.method == "POST":
@@ -19,6 +21,7 @@ def home(request):
     return render(request, "home.html", context)
 
 
+@login_required(login_url="account_login")
 def details(request, id):
     text = Text.objects.get(id=id)
     context = {"text": text}

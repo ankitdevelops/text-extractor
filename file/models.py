@@ -23,25 +23,25 @@ class Text(models.Model):
     def __str__(self):
         return os.path.basename(self.file.name)
 
-    pytesseract.pytesseract.tesseract_cmd = (
-        "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
-    )
+    # tesseract path need when environment variable is not set correctly
+
+    # pytesseract.pytesseract.tesseract_cmd = (
+    #     "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
+    # )
 
     def save(self, *args, **kwargs):
         pdfFile = wi(file=self.file, resolution=300)
-        image = pdfFile.convert("jpeg")
 
         imageBlobs = []
-
-        for img in image.sequence:
-            imgPage = wi(image=img)
-            imageBlobs.append(imgPage.make_blob("jpeg"))
+        imageBlobs.append(pdfFile.make_blob("jpeg"))  # makes binary string of the image
 
         extract = []
 
         for imgBlob in imageBlobs:
-            image = Image.open(io.BytesIO(imgBlob))
-            text = pytesseract.image_to_string(image, lang="eng")
+            image = Image.open(io.BytesIO(imgBlob))  # read image from binary data
+            text = pytesseract.image_to_string(
+                image, lang="eng"
+            )  # get strings from image
             extract.append(text)
 
         self.content = extract[0]

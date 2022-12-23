@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'home' %}">Document Extractor</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Text Extractor</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -15,11 +15,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           {% if user.is_authenticated%}
-          <li class="nav-item"><a class="nav-link" href="">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>
           {% else %}
-          <li class="nav-item"><a class="nav-link" href="">SingUp</a></li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="">SingIn</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'account_login' %}">SingIn</a>
           </li>
           {% endif %}
         </ul>
