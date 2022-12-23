@@ -4,6 +4,10 @@
 ## How it works
 ![diagram](/screenshot/working.png)
 
+## Feature and Limitations
+- Works also with scanned pdf
+- Works with only single page pdf
+
 ## Prerequisite and Installation guide
 - imageMagick (should be installed in your system)
 - Ghostscript (need to be installed in your system)
