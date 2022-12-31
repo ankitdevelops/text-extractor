@@ -28,4 +28,4 @@
 ### SignIn Page
 ![](/screenshot/127.0.0.1_8000_accounts_login_.png)
 
-[Demo Video](https://drive.google.com/file/d/1-rcxrUvB3co1dWJXEonPcX97GzSjet3l/view)
+[Demo Video](https://youtu.be/oblnol8GkoQ)
